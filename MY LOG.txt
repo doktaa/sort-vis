@@ -1,0 +1,42 @@
+2021/02/26
+
+Learnt how to use useState hook thing to save state variables (saving user input)
+
+using props in components, in this case passing the array through to display in the display area component
+
+2021//02/27
+
+Finding out random things about file structure and imports  (CSS files and stuff)
+
+State (context of constantly changing array while being sorted) is confusing, need to understand it
+
+Dealt with array not updating even though it was being sorted correctly
+
+
+2021/02/28
+
+Learnt that javascript arrays are just references and in order to actually clone an array, have to use [...xyz]
+
+Managed to get sorter working but have to clarify why i had to use [...] syntax for a specific case
+
+Now that bubble sort is a success, will look at refining current solution before adding more sort methods.
+
+Changing functionality so that instead of sort button generating and sorting at the same time, split it up so that there's a button to generate an array based on user input, and a separate sort button
+
+Doing random aesthetic stuff with css here and there
+
+2021/03/02
+
+Random playing around with a border on the display area, using a variable to determine whether the display area should show the border or not (if array size is 0 then border should not be visible because it shows by default)
+
+2021/03/03
+
+Running into an issue where button does not seem to update react use states on first click, but only updates on 2nd+ clicks...this is causing the generate array button to fail to render/update the graph unless i click it twice...
+
+console log is telling me the usestate setter method for sortArray is not actually updating it.
+
+Research tells me that react hooks run asynchronously which would explain why it wasn't immediately updating the array.
+
+Used useffect() to resolve this issue so that react renders the array only after it changes (so wait till sortArray changes before updating)
+
+ternary operators are sick
