@@ -87,7 +87,7 @@ body {
   width: 100%;
 }
 
-#barCountInput {
+.sliderInput {
   width: 100px;
   background-color: rgb(237, 237, 237) !important;
 }

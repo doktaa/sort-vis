@@ -10,26 +10,39 @@ import { findAllByDisplayValue } from '@testing-library/react';
 
 function App() {
 
+  const defaultBarCount = {default: 100, min: 0, max: 250}
+  const defaultDelay = {min: -11, max: -1}
+  const aniSpeedConstants = {bubble: -5, quick: -8}
 
-  const [input, setInput] = useState(0);
+
+  const [input, setInput] = useState(defaultBarCount.default);
+  const [delayInc, setDelayInc] = useState(defaultDelay.max);
   const [sortArray, setSortArray] = useState([]);
   const [displayAreaStyle, setDisplayAreaStyle] = useState ({visibility: "hidden"});
   const [reflectionsStyle, setReflectionsStyle] = useState ({visibility: "hidden"});
   let tempArray = [];
   let swapped;
-  let delay;
+
+  let delay = 0;
 
   useEffect(() => {
     ReactDOM.render(<DisplayArea array={sortArray} total={input}/>, document.getElementById('displayArea'))
   }, [sortArray])
 
   function inputChange(e) {
-    setInput(e.target.value > 500 ? 500 : e.target.value)
+    switch(e.target.id) {
+      case "barCountInput": setInput(e.target.value);
+      break;
+      case "delayInput": setDelayInc(e.target.value);
+      break;
+    }    
   }
 
   function defineArray() {
 
-    setDisplayAreaStyle({visibility: input !== 0 ? "visible" : "hidden"})
+    console.log(delayInc)
+
+    setDisplayAreaStyle({visibility: input == 0 ? "hidden" : "visible"})
 
     // if(input != 0) {
     //   setDisplayAreaStyle({visibility: "visible"})
@@ -63,16 +76,12 @@ function App() {
 
     do {
       swapped = false
-
       
-
-      
-
       for(let i = 0; i < tempArray.length; i++) {
 
         if(tempArray[i + 1] < tempArray[i]) {
           
-          delay += 20
+          delay += (delayInc * aniSpeedConstants.bubble);
           bubbleAnimate(i, delay, [...tempArray], pass)
 
           let temp = tempArray[i];
@@ -97,6 +106,8 @@ function App() {
 
     setTimeout(() => {
 
+      console.log('bb delay', delay);
+
       if(pass === "swapped") {
         let loadArray = [...animateArray].map((num, index) => {return {value: num, color: "green"}});
         setSortArray(loadArray);
@@ -111,7 +122,7 @@ function App() {
       
       let loadArray = [...animateArray].map((num, index) => {return {value: num, color: (index > (animateArray.length - pass)) ? "green" : "white"}})
 
-      console.log('bubble pre display', loadArray, pass)
+      // console.log('bubble pre display', loadArray, pass)
 
       setSortArray(loadArray);
 
@@ -214,7 +225,7 @@ function App() {
         let tempArray = [...arr].map((num, index) => {return {value: num, color: sorted.indexOf(index) >= 0 ? "green" : "white"}})
         setSortArray(tempArray)
       }
-    }, delay += 5)
+    }, delay += (delayInc * aniSpeedConstants.quick))
   }
 
   return (
@@ -249,7 +260,8 @@ function App() {
           </button>
           
           <span className="tag is-info is-light is-large margin1">Please select array size</span>
-          <input className="input is-info is-rounded margin1" type="number" id="barCountInput" onChange={inputChange}/>
+          <input className="input is-info is-rounded margin1 sliderInput" type="range" min={defaultBarCount.min} max={defaultBarCount.max} defaultValue={defaultBarCount.default} id="barCountInput" onChange={inputChange}/> {/*User defined array size*/}
+          <input className="input sliderInput" type="range" min={defaultDelay.min} max={defaultDelay.max} defaultValue={defaultDelay.max} id="delayInput" onChange={inputChange}/> {/*User defined array size*/}
           <button className="margin1 button is-info is-light is-normal is-rounded" onClick={defineArray}>CREATE ARRAY</button>
 
           <div className="alignBottom">

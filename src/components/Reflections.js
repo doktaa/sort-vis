@@ -81,7 +81,17 @@ const Reflections = (props) => {
                 Animating quicksort was aids, wanted to indicate sorted bars as green so turned the array from a numerical array into an array containing objects with a number and color that was passed through the whole
                 quicksort process but found out that OBJECTS WITHIN ARRAYS ACT AS REFERENCES AND THUS CANNOT BE CLONED IN A SHALLOW COPY.
                 <br/>
-                Modified to using a separate array to just store sorted bar indexes :( much boring such zzz         
+                Modified to using a separate array to just store sorted bar indexes :( much boring such zzz
+                <br/><br/>
+                2021/03/13
+                <br/>
+                Gonna change array size and delay to a user input using sliders
+                QUESTION FOR LATER RESEARCH: input sliders with onchange events which update state values works AFTER you move the sliders, how to make react set state using default values on first render/load?
+                TEMPORARY SOLUTION = set default value for usestate based on a variable, input defaultvalue will also be variable for consistency...   
+                <br/>
+                Started off using 2 separate onchange functions for barcount and delay inputs, realised i can use e.target.id and just have one function :O     
+                Since for the delay, when the slider is HIGHER we want LESS delay (smaller value when higher value), will use negative values for input and then use absolute value, budget thinking hehe
+                SIOIJOSEJIFJISEFPJSEPF NICE NICE NICE NICE SPEED CONTROLS LITTTTT
             </p>
         </div>
     )
