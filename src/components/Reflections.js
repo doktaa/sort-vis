@@ -92,6 +92,11 @@ const Reflections = (props) => {
                 Started off using 2 separate onchange functions for barcount and delay inputs, realised i can use e.target.id and just have one function :O     
                 Since for the delay, when the slider is HIGHER we want LESS delay (smaller value when higher value), will use negative values for input and then use absolute value, budget thinking hehe
                 SIOIJOSEJIFJISEFPJSEPF NICE NICE NICE NICE SPEED CONTROLS LITTTTT
+                <br/><br/>
+                2021/03/14
+                <br/>
+                Bugfix: Found a bug where the array size and delay state variables would cause the array size and delays to be changed mid animation, fixed this by disabling setState functions upon the respective onChange events when an animation was in progress.
+                Animation is determined to be in progress based on a simple state variable.
             </p>
         </div>
     )

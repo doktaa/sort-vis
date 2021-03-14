@@ -20,45 +20,52 @@ function App() {
   const [sortArray, setSortArray] = useState([]);
   const [displayAreaStyle, setDisplayAreaStyle] = useState ({visibility: "hidden"});
   const [reflectionsStyle, setReflectionsStyle] = useState ({visibility: "hidden"});
+  const [animating, setAnimating] = useState(false);
   let tempArray = [];
   let swapped;
 
   let delay = 0;
 
   useEffect(() => {
+
+    console.log(input);
     ReactDOM.render(<DisplayArea array={sortArray} total={input}/>, document.getElementById('displayArea'))
   }, [sortArray])
 
   function inputChange(e) {
-    switch(e.target.id) {
-      case "barCountInput": setInput(e.target.value);
-      break;
-      case "delayInput": setDelayInc(e.target.value);
-      break;
-    }    
+
+    if(!animating) {
+      switch(e.target.id) {
+        case "barCountInput": setInput(e.target.value);
+        break;
+        case "delayInput": setDelayInc(e.target.value);
+        break;
+      }
+    }
+
   }
 
   function defineArray() {
 
-    console.log(delayInc)
+    if(!animating) {
+      setDisplayAreaStyle({visibility: input == 0 ? "hidden" : "visible"})
 
-    setDisplayAreaStyle({visibility: input == 0 ? "hidden" : "visible"})
+      // if(input != 0) {
+      //   setDisplayAreaStyle({visibility: "visible"})
+      // } else {
+      //   setDisplayAreaStyle({visibility: "hidden"})
+      // }
 
-    // if(input != 0) {
-    //   setDisplayAreaStyle({visibility: "visible"})
-    // } else {
-    //   setDisplayAreaStyle({visibility: "hidden"})
-    // }
+      for(let i = 0; i < input; i++) {
+        tempArray.push(Math.floor(Math.random() * window.innerHeight * 0.4))
+      }
 
-    for(let i = 0; i < input; i++) {
-      tempArray.push(Math.floor(Math.random() * window.innerHeight * 0.4))
+      console.log('initial array', tempArray);
+
+      let loadArray = [...tempArray].map(num => {return {value: num, color: "white"}})
+      
+      setSortArray(loadArray);
     }
-
-    console.log('initial array', tempArray);
-
-    let loadArray = [...tempArray].map(num => {return {value: num, color: "white"}})
-    
-    setSortArray(loadArray);
   }
 
 //BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT 
@@ -68,6 +75,8 @@ function App() {
 //BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT BUBBLESORT 
 
   function bubbleSort() {
+
+    setAnimating(true);
 
     let tempArray = [...sortArray].map(i => i.value)
 
@@ -100,13 +109,17 @@ function App() {
       }
 
     } while (swapped === true)
+
+    setTimeout(() => {
+      console.log('delay bubble', delay);
+      setAnimating(false);
+    }, delay)
+
   }
 
   function bubbleAnimate(idx, delay, animateArray, pass) {   
 
     setTimeout(() => {
-
-      console.log('bb delay', delay);
 
       if(pass === "swapped") {
         let loadArray = [...animateArray].map((num, index) => {return {value: num, color: "green"}});
@@ -140,11 +153,19 @@ function App() {
 //QUICKSORT QUICKSORT QUICKSORT QUICKSORT QUICKSORT QUICKSORT QUICKSORT QUICKSORT QUICKSORT QUICKSORT QUICKSORT QUICKSORT QUICKSORT QUICKSORT QUICKSORT QUICKSORT QUICKSORT 
 
   function preQuickSort() {
+
+    setAnimating(true);
+
     let arr = [...sortArray].map(i => i.value)
     let sorted = []
     // console.log('initial array', arr)
     delay = 0;
-    quickSort(arr, 0, arr.length - 1, sorted)    
+    quickSort(arr, 0, arr.length - 1, sorted);
+
+    setTimeout(() => {
+      console.log('delay bubble', delay);
+      setAnimating(false);
+    }, delay)
 
     // setSortArray(arr);
   }
