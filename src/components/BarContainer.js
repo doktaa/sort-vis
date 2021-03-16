@@ -6,7 +6,7 @@ const BarContainer = (props) => {
     }
 
     const barStyle = {
-        height: `${props.num}px`,
+        height: `${props.num}%`,
         backgroundColor: props.color
     }
     

@@ -57,7 +57,8 @@ function App() {
       // }
 
       for(let i = 0; i < input; i++) {
-        tempArray.push(Math.floor(Math.random() * window.innerHeight * 0.4))
+        // tempArray.push(Math.floor(Math.random() * window.innerHeight * 0.425))
+        tempArray.push(Math.floor(Math.random() * 100))
       }
 
       console.log('initial array', tempArray);
@@ -274,13 +275,13 @@ function App() {
         <div className="column"></div>
         <div className="column is-four-fifths is-centered has-text-centered mainColumn">
 
-          <button className="button is-info is-light reflectionsButton " onClick={()=>{setReflectionsStyle({visibility: "visible"})}}>
+          <div className="box is-info is-light reflectionsButton " onClick={()=>{setReflectionsStyle({visibility: "visible"})}}>
             Please <b>CLICK HERE</b> to view a log of my project learning updates and reflections :)
             <br/>
             This sorting visualiser project is still a work in progress AND IT PROBABLY DOESNT WORK ON MOBILE YET LUL xxxdddd!             
-          </button>
+          </div>
           
-          <span className="tag is-info is-light is-large margin1">Left slider = array size, right slider = visualise speed</span>
+          <span className="tag is-info is-light is-large margin1 int">Left slider = array size, right slider = visualise speed</span>
           <input className="input is-info is-rounded margin1 sliderInput" type="range" min={defaultBarCount.min} max={defaultBarCount.max} defaultValue={defaultBarCount.default} id="barCountInput" onChange={inputChange}/> {/*User defined array size*/}
           <input className="input sliderInput" type="range" min={defaultDelay.min} max={defaultDelay.max} defaultValue={defaultDelay.max} id="delayInput" onChange={inputChange}/> {/*User defined array size*/}
           <button className="margin1 button is-info is-light is-normal is-rounded" onClick={defineArray}>CREATE ARRAY</button>
