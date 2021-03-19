@@ -12,7 +12,7 @@ function App() {
 
   const defaultBarCount = {default: 100, min: 0, max: 250}
   const defaultDelay = {min: -11, max: -1}
-  const aniSpeedConstants = {bubble: -5, quick: -8}
+  const aniSpeedConstants = {bubble: -5, quick: -8, insertion: -10}
 
 
   const [input, setInput] = useState(defaultBarCount.default);
@@ -250,6 +250,57 @@ function App() {
     }, delay += (delayInc * aniSpeedConstants.quick))
   }
 
+
+//INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT 
+//INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT 
+//INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT 
+//INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT 
+//INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT 
+//INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT INSERTION SORT 
+
+function insertionSort() {
+
+setAnimating(true);
+
+  delay = 0;
+  let tempArray = [...sortArray].map(i => i.value);
+
+  console.log('pre-insertion sort array', tempArray);
+
+  for(let i = 1; i < tempArray.length; i++) {
+
+    let compareIdx = i
+
+    while((tempArray[compareIdx] < tempArray[compareIdx-1]) && compareIdx !== 0) {
+
+      delay += (delayInc * aniSpeedConstants.insertion);
+      insertionSortAnimate([...tempArray], compareIdx, i);
+
+      let temp = tempArray[compareIdx - 1];
+      tempArray[compareIdx - 1] = tempArray[compareIdx];
+      tempArray[compareIdx] = temp;
+
+      compareIdx -= 1
+    }
+    // insertionSortAnimate([...tempArray], i, i)
+  }
+
+  setTimeout(() => {
+    let loadArray = [...tempArray].map((num, index) => {return {value: num, color: "green"}});
+    setSortArray(loadArray);
+    setAnimating(false);
+  }, delay);
+}
+
+function insertionSortAnimate(arr, current, sorted) {
+
+  setTimeout(() => {
+    let loadArray = [...arr].map((num, index) => {return {value: num, color: index === current ? "red" : index <= sorted ? "green" : "white"}});
+    setSortArray(loadArray);
+  }, delay);
+
+}
+
   return (
     // <div className="App">
     //   <header className="App-header">
@@ -282,8 +333,8 @@ function App() {
           </div>
           
           <span className="tag is-info is-light is-large margin1 int">Left slider = array size, right slider = visualise speed</span>
-          <input className="input is-info is-rounded margin1 sliderInput" type="range" min={defaultBarCount.min} max={defaultBarCount.max} defaultValue={defaultBarCount.default} id="barCountInput" onChange={inputChange}/> {/*User defined array size*/}
-          <input className="input sliderInput" type="range" min={defaultDelay.min} max={defaultDelay.max} defaultValue={defaultDelay.max} id="delayInput" onChange={inputChange}/> {/*User defined array size*/}
+          <input className="margin1 sliderInput" type="range" min={defaultBarCount.min} max={defaultBarCount.max} defaultValue={defaultBarCount.default} id="barCountInput" onChange={inputChange}/> {/*User defined array size*/}
+          <input className="sliderInput" type="range" min={defaultDelay.min} max={defaultDelay.max} defaultValue={defaultDelay.max} id="delayInput" onChange={inputChange}/> {/*User defined array size*/}
           <button className="margin1 button is-info is-light is-normal is-rounded" onClick={defineArray}>CREATE ARRAY</button>
 
           <div className="alignBottom">
@@ -291,6 +342,7 @@ function App() {
             <div id="displayArea" style={displayAreaStyle}></div>
             <button onClick={bubbleSort}>Bubble Sort</button>
             <button onClick={preQuickSort}>Quick Sort</button>
+            <button onClick={insertionSort}>Insertion Sort</button>
 
           </div>
 

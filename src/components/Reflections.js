@@ -97,6 +97,10 @@ const Reflections = (props) => {
                 <br/>
                 Bugfix: Found a bug where the array size and delay state variables would cause the array size and delays to be changed mid animation, fixed this by disabling setState functions upon the respective onChange events when an animation was in progress.
                 Animation is determined to be in progress based on a simple state variable.
+                <br/><br/>
+                2021/03/19
+                <br/>
+                Started and finished implementing insertion sort
             </p>
         </div>
     )

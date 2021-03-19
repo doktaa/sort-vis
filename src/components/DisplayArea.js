@@ -12,9 +12,6 @@ const DisplayArea = (props) => {
             })}
 
         </div>
-
-
-
     )
 
 }
