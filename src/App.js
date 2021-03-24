@@ -324,31 +324,33 @@ function insertionSortAnimate(arr, current, sorted) {
 
       <div className="columns columnContainer">
         <div className="column"></div>
-        <div className="column is-four-fifths is-centered has-text-centered mainColumn">
+          <div className="column is-four-fifths is-centered has-text-centered mainColumn">
 
-          <div className="box is-info is-light reflectionsButton " onClick={()=>{setReflectionsStyle({visibility: "visible"})}}>
-            Please <b>CLICK HERE</b> to view a log of my project learning updates and reflections :)
-            <br/>
-            This sorting visualiser project is still a work in progress AND IT PROBABLY DOESNT WORK ON MOBILE YET LUL xxxdddd!             
-          </div>
-          
-          <span className="tag is-info is-light is-large margin1 int">Left slider = array size, right slider = visualise speed</span>
-          <input className="margin1 sliderInput" type="range" min={defaultBarCount.min} max={defaultBarCount.max} defaultValue={defaultBarCount.default} id="barCountInput" onChange={inputChange}/> {/*User defined array size*/}
-          <input className="sliderInput" type="range" min={defaultDelay.min} max={defaultDelay.max} defaultValue={defaultDelay.max} id="delayInput" onChange={inputChange}/> {/*User defined array size*/}
-          <button className="margin1 button is-info is-light is-normal is-rounded" onClick={defineArray}>CREATE ARRAY</button>
+            <div className="box is-info is-light reflectionsButton " onClick={()=>{setReflectionsStyle({visibility: "visible"})}}>
+              Please <b>CLICK HERE</b> to view a log of my project learning updates and reflections :)
+              <br/>
+              This sorting visualiser project is still a work in progress AND IT PROBABLY DOESNT WORK ON MOBILE YET LUL xxxdddd!             
+            </div>
+            
+            <span className="tag is-info is-light is-large margin1 int">Left slider = array size, right slider = visualise speed</span>
+            <input className="margin1 sliderInput" type="range" min={defaultBarCount.min} max={defaultBarCount.max} defaultValue={defaultBarCount.default} id="barCountInput" onChange={inputChange}/> {/*User defined array size*/}
+            <input className="sliderInput" type="range" min={defaultDelay.min} max={defaultDelay.max} defaultValue={defaultDelay.max} id="delayInput" onChange={inputChange}/> {/*User defined array size*/}
+            <button className="margin1 button is-info is-light is-normal is-rounded" onClick={defineArray}>CREATE ARRAY</button>
 
-          <div className="alignBottom">
-
-            <div id="displayArea" style={displayAreaStyle}></div>
-            <button onClick={bubbleSort}>Bubble Sort</button>
-            <button onClick={preQuickSort}>Quick Sort</button>
-            <button onClick={insertionSort}>Insertion Sort</button>
+            
 
           </div>
-
-        </div>
         <div className="column"></div>
       </div>
+
+      <div className="alignBottom container">
+
+              <div id="displayArea" style={displayAreaStyle}></div>
+              <button onClick={bubbleSort}>Bubble Sort</button>
+              <button onClick={preQuickSort}>Quick Sort</button>
+              <button onClick={insertionSort}>Insertion Sort</button>
+
+            </div>
     </div>
   )
 }

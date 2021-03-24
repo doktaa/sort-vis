@@ -63,6 +63,7 @@ body {
 .reflectionsButton {
   margin: 0 auto 1% auto;
   width: 80%;
+  font-size: 1.8vmin;
 }
 
 .xbutton {
@@ -73,18 +74,20 @@ body {
 
 .sectionMain {
   padding-top: 5% !important;
+  padding-bottom: 0% !important;
+  height: 100vh;
 }
 
 .columnContainer {
-  height: 60vh;
+  /* height: 20vh; */
 }
 
-.alignBottom {
+/* .alignBottom {
   position: absolute;
   bottom: 15%;
   left: 0;
   width: 100%;
-}
+} */
 
 .sliderInput {
   width: 100px;
@@ -98,17 +101,18 @@ body {
   margin-top: 5px
 }
 
-
+.alignBottom {
+  text-align: center;
+}
 /* Display Graph CSS */
 
 #displayArea {
-  width: 80%;
   margin-left: auto;
   margin-right: auto;
   border: 3px solid;
   border-color: #66FCF1;
   border-radius: 15px;
-  height: 50vh;
+  height: 60vh;
 }
 
 .graphContainer {
@@ -134,10 +138,10 @@ body {
     font-size: 3vw !important;
   }
 
-  .alignBottom {
+  /* .alignBottom {
     position: absolute;
     bottom: 5%;
     left: 0;
     width: 100%;
-  }
+  } */
 }
